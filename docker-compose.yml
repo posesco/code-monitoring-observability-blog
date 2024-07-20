@@ -1,0 +1,105 @@
+services:
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/var/www/html
+      - ./server/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: unless-stopped
+    networks:
+      miniblog:
+
+  php-fpm:
+    image: php:8-fpm
+    # build:
+    #   context: ./server/php
+    volumes:
+      - ./src:/var/www/html
+      - ./server/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    restart: unless-stopped
+    networks:
+      miniblog:
+
+  db:
+    image: mariadb:11.2.4
+    environment:
+      MARIADB_ROOT_PASSWORD: example
+      MARIADB_USER: UserMiniBlogSql
+      MARIADB_PASSWORD: kv5OmlgW7@J4
+      MARIADB_DATABASE: MiniBlog
+    volumes:
+      - db:/backup
+    restart: unless-stopped
+    networks:
+      miniblog:
+
+  # redis_cache:
+  #   image: redis:6
+  #   volumes:
+  #     - ./redis_cache:/data
+  #   command: redis-server --appendonly yes
+  #   restart: unless-stopped
+  #   networks:
+  #     miniblog:
+
+  # redis_sessions:
+  #   build:
+  #     context: ./redis_sesiones
+  #   volumes:
+  #     - ./redis_sesiones/data:/data
+  #     - ./redis_sesiones/key:/root/.ssh
+  #     - ./redis_sesiones/conf/sshd_config:/etc/ssh/sshd_config
+  #     - ./redis_sesiones/conf/keepalived_server_a.conf:/etc/keepalived/keepalived.conf
+  #   command: redis-server --appendonly yes
+  #   restart: unless-stopped
+  #   networks:
+  #     miniblog:
+
+  # mongo:
+  #   image: mongo:4
+  #   volumes:
+  #     - ./mongo/conf:/etc/mongo
+  #     - ./mongo/data:/data
+  #   env_file: ./.env
+  #   restart: unless-stopped
+  #   networks:
+  #     miniblog:
+
+
+
+  # ssh_files:
+  #   build:
+  #     context: ./ssh_files
+  #   volumes:
+  #     - ./ssh_files/key:/root/.ssh
+  #     - ./ssh_files/conf/sshd_config:/etc/ssh/sshd_config
+  #     - ./ssh_files/conf/lsyncd.conf.lua:/etc/lsyncd/lsyncd.conf.lua
+  #     - ./ssh_files/storage_a:/home/remote_user/almacen
+  #     - ./ssh_files/conf/keepalived_server_a.conf:/etc/keepalived/keepalived.conf
+  #   restart: unless-stopped
+  #   networks:
+  #     miniblog:
+
+  # ssh_emr:
+  #   build:
+  #     context: ./ssh_files
+  #   volumes:
+  #     - ./ssh_emr/key:/root/.ssh
+  #     - ./ssh_emr/conf/sshd_config:/etc/ssh/sshd_config
+  #     - ./ssh_emr/conf/lsyncd.conf.lua:/etc/lsyncd/lsyncd.conf.lua
+  #     - ./ssh_emr/storage_a:/home/remote_user/almacen
+  #     - ./ssh_emr/conf/keepalived_server_a.conf:/etc/keepalived/keepalived.conf
+  #   restart: unless-stopped
+  #   networks:
+  #     miniblog:
+
+volumes:
+  app:
+  db:
+
+networks:
+  miniblog:
+    driver: bridge
