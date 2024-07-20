@@ -14,16 +14,16 @@
     $vista = $_SERVER['REQUEST_URI'];
     switch ($vista) {
         case '/index.php?crear_entrada':
-            require_once 'views/crear_entrada.php';
+            require_once 'views/newpost.php';
             break;
         case '/index.php?eliminar_entrada':
-            require_once 'views/eliminar_entrada.php';
+            require_once 'views/delpost.php';
             break;
         case '/index.php?actividad':
-            require_once 'views/actividad.php';
+            require_once 'views/monitoring.php';
             break;
         default:
-            require_once 'views/cuerpo.php';
+            require_once 'views/body.php';
             break;
     }
     ?>
