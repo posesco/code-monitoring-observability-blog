@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS entries (
 )ENGINE = INNODB;
 
 INSERT INTO users (user, email, pass)
-  VALUES ('admin', 'admin@admin.com', '$2y$04$mGlJQ5opPa.hZ/.LKPZCP.7/Y8P/gEUSFPwrWm/P6105D7cg.coM.');
+  VALUES ('admin', 'admin@admin.com', '$2y$04$NIsR1mY0Fb9Ycwy6gzDTO.ZDfsB6skhDO4/jeAhnzQBtuySCAwpQ6');
 
 INSERT INTO entries(user_id, title, description, image)
   VALUES (1,'Empresa SAS','Somos una agencia digital, especializada en desarrollo de software y aplicaciones web y móviles, con énfasis en diseño de interfaz y experiencia de usuario. Creemos que el futuro está en el mundo digital y le apostamos nuestra energia y talento en fortalecer la presencia de nuestros clientes en los diferentes soportes y dispositivos que la tecnología facilita para hacer más efectivo sus procesos operativos y más sencilla la relación con sus usuarios finales.',''),
