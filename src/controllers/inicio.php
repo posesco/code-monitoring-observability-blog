@@ -1,29 +1,27 @@
 <?php
-// Cargar conexion a DB
 require_once '../includes/mysql.php';
+
+if (!isset($_SESSION)) {
+    session_start();
+}
 if (isset($_POST)) {
-    // Recoger los datos del formulario
     $user = ($_POST['user']);
     $password = $_POST['password'];
-    // Consulta para comprobar credenciales de usuario
-    $sql = "SELECT * FROM usuarios WHERE usuario = '$user'";
-    $login = mysqli_query($db, $sql);
-    if ($login && mysqli_num_rows($login) == 1) {
-        $usuario = mysqli_fetch_assoc($login);
-        // Comparacion de password
-        $verify = password_verify($password, $usuario['pass']);
-        if ($verify){
-            // Usa una sesion para guardar los datos de usuario
-            $_SESSION['usuario'] = $usuario;
-            if (isset($_SESSION['errores'])){
-                session_unset($_SESSION['errores']);
+    $query = "SELECT * FROM users WHERE user = '$user'";
+    $match = mysqli_query($sqlDb, $query);
+    if ($match && mysqli_num_rows($match) == 1) {
+        $userFound = mysqli_fetch_assoc($match);
+        $verify = password_verify($password, $userFound['pass']);
+        if ($verify) {
+            $_SESSION['user'] = $userFound;
+            if (isset($_SESSION['errors'])) {
+                session_unset();
             }
-        }else{
-            $_SESSION['errores'] = 'Password incorrecto!!';
+        } else {
+            $_SESSION['errors'] = '¡Password incorrecto!';
         }
-    }else{
-        $_SESSION['errores'] = 'Usuario no exite!!';
-    }   
+    } else {
+        $_SESSION['errors'] = '¡Usuario no exite!';
+    }
 }
 header('Location:../index.php');
-?>

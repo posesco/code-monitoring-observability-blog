@@ -1,8 +1,21 @@
 <?php
-$sessionHost = getenv('SERVER_REDIS_SESSION');
-$cacheHost  = getenv('SERVER_REDIS_CACHE');
-$redis_sesion    = new Redis();
-$redis_sesion->connect($sessionHost, 6379);
-$v_redis        = $redis_sesion->info();
-$redis_cache     = new Redis();
-$redis_cache->connect($cacheHost, 6379);
+$redisHost = getenv('SERVER_REDIS');
+$redisPass = getenv('REDIS_PASS');
+$redisPort = 6379;
+$redisTimeout = 2.5;
+
+$redis = new Redis();
+try {
+    $connected = $redis->connect($redisHost, $redisPort, $redisTimeout);
+    if (!$connected) {
+        throw new Exception('Could not connect to Redis at ' . $redisHost . ':' . $redisPort);
+    }
+    if ($redisPass) {
+        $redis->auth($redisPass);
+        $v_redis = $redis->info();
+    }
+} catch (RedisException $e) {
+    echo 'RedisException: ' . $e->getMessage() . "\n";
+} catch (Exception $e) {
+    echo 'Exception: ' . $e->getMessage() . "\n";
+}

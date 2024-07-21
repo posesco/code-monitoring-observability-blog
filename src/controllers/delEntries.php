@@ -6,8 +6,8 @@ if (isset($_POST)) {
     $sql = "DELETE FROM entradas WHERE id = $entrada_id";
     $borrar = mysqli_query($db, $sql);
     if ($borrar) {
-        $_SESSION['completado'] = "Se borro correctamente la entrada";
+        $_SESSION['completed'] = "Se borro correctamente la entrada";
     }
-    $_SESSION['errores']['general']= "No selecciono ninguna entreda";
+    $_SESSION['errors']['general']= "No selecciono ninguna entreda";
 }
-header('Location:../index.php?eliminar_entrada');
+header('Location:../index.php?delEntry');

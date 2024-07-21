@@ -1,29 +1,27 @@
-<?php if (isset($_SESSION['usuario'])) : ?>
+<?php if (isset($_SESSION['user'])) : ?>
     <?php require_once 'menu.php'; ?>
-    <!-- INICIO DE CUERPO -->
-    <div class="principal">
+    <div class="main">
         <h1>Ultimas Entradas</h1>
         <?php
-        // el parametro db viene de conexion.php
         if ($_SERVER['REQUEST_URI'] == '/index.php?todas') {
-            $entradas = conseguirEntradas($db);
+            $entries = getEntries($sqlDb);
         } else {
-            $entradas = conseguirEntradas($db, true);
+            $entries = getEntries($sqlDb, true);
         }
-        if (!empty($entradas)) :
-            while ($entrada = mysqli_fetch_assoc($entradas)) :
+        if (!empty($entries)) :
+            while ($entry = mysqli_fetch_assoc($entries)) :
         ?>
                 <article class="entrada">
                     <a href="">
-                        <h2><?= $entrada['titulo'] ?></h2>
+                        <h2><?= $entry['titulo'] ?></h2>
                     </a>
-                    <span class="fecha"><?= 'Autor: ' . $entrada['autor'] . ' | ' . $entrada['fecha'] ?></span>
+                    <span class="fecha"><?= 'Autor: ' . $entry['autor'] . ' | ' . $entry['fecha'] ?></span>
                     <p>
                         <p>
-                            <img src='<?= $entrada['imagen'] ?>' width='150px' align="bottom">
+                            <img src='<?= $entry['imagen'] ?>' width='150px' align="bottom">
 
                         </p>
-                        <?= $entrada['descripcion'] ?>
+                        <?= $entry['descripcion'] ?>
                     </p>
                 </article>
         <?php
@@ -38,5 +36,4 @@
             </div>
         <?php endif; ?>
     </div>
-    <!-- FIN DE CUERPO -->
 <?php endif; ?>

@@ -1,52 +1,49 @@
 <?php
 
-function mostrarError($errores, $campo)
+function showError($errors, $field)
 {
-    $alerta = '';
-    if (isset($errores[$campo]) && !empty($campo)) {
-        $alerta = "<div class='alerta-fallo'>" . $errores[$campo] . "</div>";
+    $alert = '';
+    if (isset($errors[$field]) && !empty($field)) {
+        $alert = "<div class='alerta-fallo'>" . $errors[$field] . "</div>";
     }
-    return $alerta;
+    return $alert;
 }
 
-// Limpia la variable errores para permitir el ingreso de nuevos datos
-function borrarErrores()
+function delErrors()
 {
-    $borrado = false;
-    if (isset($_SESSION['errores'])) {
-        $_SESSION['errores'] = null;
-        $borrado = true;
+    $deleted = false;
+    if (isset($_SESSION['errors'])) {
+        $_SESSION['errors'] = null;
+        $deleted = true;
     }
-    if (isset($_SESSION['completado'])) {
-        $_SESSION['completado'] = null;
-        $borrado = true;;
+    if (isset($_SESSION['completed'])) {
+        $_SESSION['completed'] = null;
+        $deleted = true;;
     }
-    return $borrado;
+    return $deleted;
 }
 
-function conseguirEntradas($conexion, $limit = null)
+function getEntries($sqlDb, $limit = null)
 {
-    $sql = "SELECT e.*, u.usuario AS 'autor' 
-            FROM entradas e 
-            INNER JOIN usuarios u ON e.usuario_id = u.id
+    $sql = "SELECT e.*, u.user AS 'autor' 
+            FROM entries e 
+            INNER JOIN users u ON e.user_id = u.id
             ORDER BY e.id DESC";
     if ($limit) {
-        // Concatenamiento para un limite de 4 entradas
         $sql .= " LIMIT 2";
     }
-    $entradas = mysqli_query($conexion, $sql);
-    $resultado = array();
-    if ($entradas && mysqli_num_rows($entradas) >= 1) {
-        $resultado = $entradas;
+    $entries = mysqli_query($sqlDb, $sql);
+    $result = array();
+    if ($entries && mysqli_num_rows($entries) >= 1) {
+        $result = $entries;
     }
-    return $resultado;
+    return $result;
 }
 
-// Listar Entradas
-function ListarEntradas($conexion)
+function ListEntries($sqlDb)
 {
-    $sql = "SELECT * FROM entradas ORDER BY fecha ASC";
-    $post = mysqli_query($conexion, $sql);
+    $sql = "SELECT * FROM entries ORDER BY date ASC";
+    $post = mysqli_query($sqlDb, $sql);
     $result = array();
     if ($post && mysqli_num_rows($post) >= 1) {
         $result = $post;

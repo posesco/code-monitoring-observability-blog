@@ -1,49 +1,44 @@
-<!-- INICIO FORMULARIO DE REGISTRO -->
-<?php if (isset($_GET['registro'])) : ?>
-    <div class="formulario">
+<?php if (isset($_GET['signUp'])) : ?>
+    <div class="form">
         <h1>Formulario de Registro</h1>
-        <!-- Muestra error de registro -->
-        <?php if (isset($_SESSION['completado'])) : ?>
+        <?php if (isset($_SESSION['completed'])) : ?>
             <div class='alerta-exito'>
-                <?= $_SESSION['completado'] ?>
+                <?= $_SESSION['completed'] ?>
             </div>
-        <?php elseif (isset($_SESSION['errores']['general'])) : ?>
+        <?php elseif (isset($_SESSION['errors']['general'])) : ?>
             <div class='alerta-fallo'>
-                <?= $_SESSION['errores']['general'] ?>
+                <?= $_SESSION['errors']['general'] ?>
             </div>
         <?php endif; ?>
-        <form action="controllers/registro.php" method="POST">
-            <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'user') : ''; ?>
+        <form action="controllers/signUp.php" method="POST">
+            <?php echo isset($_SESSION['errors']) ? showError($_SESSION['errors'], 'user') : ''; ?>
             <label for="user">Usuario</label>
-            <input type="text" name="user">
-            <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'email') : ''; ?>
+            <input type="text" name="user" id="user">
+            <?php echo isset($_SESSION['errors']) ? showError($_SESSION['errors'], 'email') : ''; ?>
             <label for="email">Correo</label>
-            <input type="email" name="email">
-            <?php echo isset($_SESSION['errores']) ? mostrarError($_SESSION['errores'], 'password') : ''; ?>
+            <input type="email" name="email" id="email">
+            <?php echo isset($_SESSION['errors']) ? showError($_SESSION['errors'], 'password') : ''; ?>
             <label for="password">Contraseña</label>
-            <input type="password" name="password">
+            <input type="password" name="password" id="password">
             <input type="submit" value="Registrar">
-            <a href="controllers/cerrar_sesion.php">Iniciar Sesion</a>
+            <a href="controllers/signOff.php">Iniciar Sesion</a>
         </form>
     </div>
-    <!-- FIN FORMULARIO DE REGISTRO -->
-<?php elseif (!isset($_SESSION['usuario'])) : ?>
-    <!-- INICIO FORMULARIO LOGIN -->
-    <div class="formulario">
+<?php elseif (!isset($_SESSION['user'])) : ?>
+    <div class="form">
         <h1>Inicio de Sesion</h1>
-        <?php if (isset($_SESSION['errores'])) : ?>
+        <?php if (isset($_SESSION['errors'])) : ?>
             <div class='alerta-fallo'>
-                <?= $_SESSION['errores'] ?>
+                <?= $_SESSION['errors'] ?>
             </div>
         <?php endif; ?>
         <form action="controllers/inicio.php" method="POST">
             <label for="user">Usuario</label>
-            <input type="text" name="user">
+            <input type="text" name="user" id="user">
             <label for="password">Contraseña</label>
-            <input type="password" name="password">
+            <input type="password" name="password" id="password">
             <input type="submit" value="Iniciar Session">
-            <a href="index.php?registro">Crear cuenta </a>
+            <a href="index.php?signUp">Crear cuenta </a>
         </form>
     </div>
-    <!-- FIN FORMULARIO LOGIN -->
 <?php endif; ?>

@@ -60,7 +60,7 @@ body {
   background: green;
 }
 
-.principal {
+.main {
   float: left;
   width: 90%;
   min-height: auto;
@@ -73,17 +73,17 @@ body {
   overflow: hidden;
   
 }
-.principal h1 {
+.main h1 {
   color:#6adaff;
 }
-.principal a {
+.main a {
   text-transform: uppercase;
   text-decoration: none;
   font-size: 12px;
   line-height: 20px;
   color: greenyellow;
 }
-.formulario {
+.form {
   width: auto;
   height: auto;
   background: #000000b5;
@@ -97,21 +97,21 @@ body {
   padding: 30px 30px;
 }
 
-.formulario h1 {
+.form h1 {
   margin: 0;
   padding: 0 0 20px;
   text-align: center;
   font-size: 32px;
 }
 
-.formulario label {
+.form label {
   margin: 0;
   padding: 0;
   font-weight: bold;
   display: block;
 }
 
-.formulario input {
+.form input {
   width: 100%;
   margin-bottom: 20px;
   border: none;
@@ -122,7 +122,7 @@ body {
   color: #fff;
   font-size: 16px;
 }
-.formulario textarea {
+.form textarea {
   width: 1090px;
   height: 152px;
   margin-bottom: 20px;
@@ -133,7 +133,7 @@ body {
   color: #fff;
   font-size: 16px;
 }
-.formulario select {
+.form select {
   width: 100%;
   margin-bottom: 20px;
   border: none;
@@ -143,12 +143,12 @@ body {
   color: #fff;
   font-size: 16px;
 }
-.formulario option {
+.form option {
   background: black;
   color: #fff;
   font-size: 16px;
 }
-.formulario input[type="submit"] {
+.form input[type="submit"] {
   border: none;
   outline: none;
   height: 40px;
@@ -158,20 +158,20 @@ body {
   border-radius: 20px;
 }
 
-.formulario input[type="submit"]:hover {
+.form input[type="submit"]:hover {
   cursor: pointer;
   background: #ffc107b5;
   color: #000;
 }
 
-.formulario a {
+.form a {
   text-decoration: none;
   font-size: 16px;
   line-height: 20px;
   color: darkgrey;
 }
 
-.formulario a:hover {
+.form a:hover {
   color: #fff;
 }
 

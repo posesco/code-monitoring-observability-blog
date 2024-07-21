@@ -53,13 +53,13 @@ if (isset($_POST)) {
         $sql = "INSERT INTO entradas (usuario_id, titulo, descripcion, imagen) VALUES ('$id', '$titulo', '$descripcion', 'img/$nombre')";
         $entrada = mysqli_query($db, $sql);
         if ($entrada) {
-            $_SESSION['completado'] = "Se creo la nueva entrada de titulo: $titulo";
+            $_SESSION['completed'] = "Se creo la nueva entrada de titulo: $titulo";
         } else {
-            $_SESSION['errores']['general'] = 'No fue posible crear la entrada';
+            $_SESSION['errors']['general'] = 'No fue posible crear la entrada';
         }
     } else {
         // Devolvemos al formulario para corregir los datos 
-        $_SESSION['errores'] = $errores;
+        $_SESSION['errors'] = $errores;
     }
 }
 header('Location:../index.php?crear_entrada');

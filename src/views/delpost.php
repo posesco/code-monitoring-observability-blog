@@ -4,13 +4,13 @@
     <div class="entradas">
         <h1>Borrar Entradas</h1>
         <p>
-        <?php if (isset($_SESSION['completado'])) : ?>
+        <?php if (isset($_SESSION['completed'])) : ?>
                 <div class='alerta-exito'>
-                    <?= $_SESSION['completado'] ?>
+                    <?= $_SESSION['completed'] ?>
                 </div>
-            <?php elseif (isset($_SESSION['errores']['general'])) : ?>
+            <?php elseif (isset($_SESSION['errors']['general'])) : ?>
                 <div class='alerta-fallo'>
-                    <?= $_SESSION['errores']['general'] ?>
+                    <?= $_SESSION['errors']['general'] ?>
                 </div>
             <?php endif; ?>
             <h2>Seccion borrar entradas</h2>
@@ -22,7 +22,7 @@
             <select name="borrar">
                 <option value=""></option>
                 <?php
-                $listados = ListarEntradas($db);
+                $listados = ListEntries($db);
                 while ($listado = mysqli_fetch_assoc($listados)) :
                 ?>
                     <option value="<?= $listado['id'] ?>"><?= $listado['titulo'] ?></option>
@@ -31,7 +31,7 @@
             <br>
             <input type="submit" value="Borrar entrada">
         </form>
-        <?php borrarErrores(); ?>
+        <?php delErrors(); ?>
     </div>
     <!-- FIN DE CUERPO -->
 <?php endif; ?>

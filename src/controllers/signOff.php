@@ -4,6 +4,6 @@ session_start();
 if (isset($_SESSION['usuario'])){
     session_destroy();
 }
-borrarErrores();
+delErrors();
 header('Location:../index.php');
 ?>
