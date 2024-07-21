@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mini Blog Posesco</title>
+    <title>Blog with monitoring and observability</title>
     <link rel="icon" href="img/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
@@ -28,6 +28,7 @@
             require_once 'views/body.php';
             break;
     }
+    require_once 'views/footer.php';
     ?>
 </body>
 
