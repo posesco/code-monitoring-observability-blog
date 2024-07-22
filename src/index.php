@@ -11,24 +11,15 @@
 
 <body>
     <?php
-    require_once 'views/header.php';
-    require_once 'views/form.php';
-    $view = $_SERVER['REQUEST_URI'];
-    switch ($view) {
-        case '/index.php?crear_entrada':
-            require_once 'views/newpost.php';
-            break;
-        case '/index.php?delEntry':
-            require_once 'views/delpost.php';
-            break;
-        case '/index.php?actividad':
-            require_once 'views/monitoring.php';
-            break;
-        default:
-            require_once 'views/body.php';
-            break;
-    }
-    require_once 'views/footer.php';
+    include 'views/form.php';
+    $view = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $viewMap = [
+        '/index.php?newPost' => 'views/newPost.php',
+        '/index.php?delPost' => 'views/delPost.php',
+        '/index.php?status' => 'views/status.php',
+    ];
+    $viewToLoad = $viewMap[$view] ?? 'views/body.php';
+    include 'views/footer.php';
     ?>
 </body>
 

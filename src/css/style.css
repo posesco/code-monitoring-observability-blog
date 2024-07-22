@@ -6,13 +6,13 @@ body {
   font-family: sans-serif;
   height: 100vh;
 }
-.info-cabeza {
+.info-header {
   width: auto;
   height: auto;
   background: #0000006e;
   color: #fff;
 }
-.info-cabeza h1 {
+.info-header h1 {
   margin: 0;
   padding: 0 0 20px;
   text-align: left;
@@ -197,7 +197,7 @@ body {
   color: #fff;
 }
 
-#ver-todas a{
+#see-all a{
   float: right;
   font-style: oblique;
 }

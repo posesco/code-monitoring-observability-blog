@@ -7,7 +7,7 @@ if (isset($_SESSION['user'])) {
     $redis->lpush($_SESSION['user']['user'], $_SERVER['REQUEST_URI']);
 }
 ?>
-<div class="info-cabeza">
+<div class="info-header">
     <table border="0">
         <tr>
             <td>

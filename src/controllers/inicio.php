@@ -1,27 +1,29 @@
 <?php
 require_once '../includes/mysql.php';
 
-if (!isset($_SESSION)) {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
-if (isset($_POST)) {
-    $user = ($_POST['user']);
-    $password = $_POST['password'];
-    $query = "SELECT * FROM users WHERE user = '$user'";
-    $match = mysqli_query($sqlDb, $query);
-    if ($match && mysqli_num_rows($match) == 1) {
-        $userFound = mysqli_fetch_assoc($match);
-        $verify = password_verify($password, $userFound['pass']);
-        if ($verify) {
+}   
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $user = trim($_POST['user']);
+    $password = trim($_POST['password']);
+    $statement = $sqlDb->prepare("SELECT * FROM users WHERE user = ?");
+    $statement->bind_param('s', $user);
+    $statement->execute();
+    $result = $statement->get_result();
+    if ($result && $result->num_rows === 1) {
+        $userFound = $result->fetch_assoc();
+        if (password_verify($password, $userFound['pass'])) {
             $_SESSION['user'] = $userFound;
-            if (isset($_SESSION['errors'])) {
-                session_unset();
-            }
+            unset($_SESSION['errors']);
         } else {
             $_SESSION['errors'] = '¡Password incorrecto!';
         }
     } else {
-        $_SESSION['errors'] = '¡Usuario no exite!';
+        $_SESSION['errors'] = '¡Usuario no existe!';
     }
+    $statement->close();
 }
-header('Location:../index.php');
+header('Location:../views/body.php');
+exit;
