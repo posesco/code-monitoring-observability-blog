@@ -4,6 +4,8 @@
     <div class="main">
         <h1>Ultimas Entradas</h1>
         <?php
+        require_once '../controllers/helpers.php';
+        require_once '../includes/mysql.php';
         if ($_SERVER['REQUEST_URI'] == '/index.php?all') {
             $entries = getEntries($sqlDb);
         } else {
@@ -12,17 +14,17 @@
         if (!empty($entries)) :
             while ($entry = mysqli_fetch_assoc($entries)) :
         ?>
-                <article class="entrada">
+                <article class="entries">
                     <a href="">
                         <h2><?= $entry['title'] ?></h2>
                     </a>
-                    <span class="fecha"><?= 'Autor: ' . $entry['autor'] . ' | ' . $entry['fecha'] ?></span>
+                    <span class="fecha"><?= 'Autor: ' . $entry['autor'] . ' | ' . $entry['date'] ?></span>
                     <p>
                     <p>
-                        <img src='<?= $entry['imagen'] ?>' width='150px' align="bottom">
+                        <img src='<?= $entry['image'] ?>' width='150px' align="bottom">
 
                     </p>
-                    <?= $entry['descripcion'] ?>
+                    <?= $entry['description'] ?>
                     </p>
                 </article>
         <?php

@@ -25,5 +25,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     $statement->close();
 }
-header('Location:../views/body.php');
+header('Location:../index.php');
 exit;

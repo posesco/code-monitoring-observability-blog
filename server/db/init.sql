@@ -16,14 +16,20 @@ CREATE TABLE IF NOT EXISTS entries (
  CONSTRAINT fk_E_U FOREIGN KEY(user_id) REFERENCES users(id)
 )ENGINE = INNODB;
 
+/* user: admin pass:admin */
 INSERT INTO users (user, email, pass)
   VALUES ('admin', 'admin@admin.com', '$2y$04$NIsR1mY0Fb9Ycwy6gzDTO.ZDfsB6skhDO4/jeAhnzQBtuySCAwpQ6');
 
 INSERT INTO entries(user_id, title, description, image)
-  VALUES (1,'Empresa SAS','Somos una agencia digital, especializada en desarrollo de software y aplicaciones web y móviles, con énfasis en diseño de interfaz y experiencia de usuario. Creemos que el futuro está en el mundo digital y le apostamos nuestra energia y talento en fortalecer la presencia de nuestros clientes en los diferentes soportes y dispositivos que la tecnología facilita para hacer más efectivo sus procesos operativos y más sencilla la relación con sus usuarios finales.',''),
-  (1, 'Tienda de Ropa XYZ', 'En Tienda de Ropa XYZ nos dedicamos a ofrecer lo mejor en moda para toda la familia. Contamos con una amplia variedad de prendas de alta calidad y a precios accesibles. Nuestro objetivo es que cada cliente encuentre su estilo ideal y se sienta cómodo con nuestras colecciones.', ''),
-  (1, 'Cafetería Dulce Aroma', 'Cafetería Dulce Aroma es el lugar perfecto para disfrutar de un buen café en un ambiente acogedor. Ofrecemos una gran selección de bebidas, desde los clásicos espressos hasta innovadores frappés. Además, puedes acompañar tu bebida con nuestras deliciosas pastas y postres caseros.', ''),
-  (1, 'Consultoría Financiera ABC', 'En Consultoría Financiera ABC brindamos asesoramiento personalizado para ayudar a nuestros clientes a tomar las mejores decisiones en sus inversiones y finanzas personales. Contamos con un equipo de expertos con años de experiencia en el sector financiero.', ''),
-  (1, 'Estudio de Yoga Zen', 'Estudio de Yoga Zen es un espacio dedicado a la práctica del yoga y la meditación. Ofrecemos clases para todos los niveles, desde principiantes hasta avanzados, con el objetivo de promover el bienestar físico y mental de nuestros estudiantes.', ''),
-  (1, 'Librería Mundo de Letras', 'Librería Mundo de Letras es el lugar ideal para los amantes de la lectura. Contamos con una extensa colección de libros de diferentes géneros y para todas las edades. Nuestro personal está siempre dispuesto a ayudar y a recomendar lecturas que se ajusten a tus intereses.', '');
+  VALUES 
+  (1, 'Restaurante Sabor del Mar', 'Restaurante Sabor del Mar se especializa en ofrecer los mejores platos de mariscos frescos en un ambiente elegante y relajante. Nuestro menú incluye desde ceviches frescos hasta exquisitos platillos gourmet con mariscos.', ''),
+  (1, 'Agencia de Viajes Aventura', 'Agencia de Viajes Aventura ofrece paquetes turísticos únicos para quienes buscan explorar destinos exóticos y emocionantes. Nuestro equipo de expertos te ayudará a planificar cada detalle de tu viaje para una experiencia inolvidable.', ''),
+  (1, 'Gimnasio Fitness Plus', 'Gimnasio Fitness Plus es tu destino para alcanzar tus metas de salud y condición física. Ofrecemos una amplia gama de equipos modernos, clases grupales y entrenadores personales altamente capacitados.', ''),
+  (1, 'Taller de Cerámica Arte y Diseño', 'En el Taller de Cerámica Arte y Diseño, enseñamos la belleza de la cerámica a través de clases y talleres para todos los niveles. Ven a explorar tu creatividad y llevarte a casa piezas únicas hechas a mano.', ''),
+  (1, 'Centro de Belleza Estilo Chic', 'Centro de Belleza Estilo Chic ofrece servicios completos de peluquería, estética y bienestar. Desde cortes de cabello y coloración hasta tratamientos faciales y masajes, nuestro objetivo es resaltar tu belleza y hacerte sentir renovado.', ''),
+  (1, 'Escuela de Música Armonía', 'Escuela de Música Armonía proporciona educación musical de alta calidad para estudiantes de todas las edades. Ofrecemos clases de diversos instrumentos y canto, adaptadas a cada nivel y estilo musical.', ''),
+  (1, 'Consultora de Marketing Digital Innovate', 'Consultora de Marketing Digital Innovate se dedica a ayudar a empresas a aumentar su presencia online a través de estrategias personalizadas de marketing digital. Desde SEO hasta campañas en redes sociales, estamos aquí para potenciar tu marca.', ''),
+  (1, 'Veterinaria AnimalCare', 'Veterinaria AnimalCare ofrece atención médica integral para tus mascotas. Nuestro equipo de veterinarios está comprometido con el bienestar de los animales, brindando desde consultas de rutina hasta emergencias.', ''),
+  (1, 'Servicios de Mudanza Rápida y Segura', 'Servicios de Mudanza Rápida y Segura garantiza una transición sin estrés para tu mudanza. Nos encargamos de todos los detalles logísticos para que tu mudanza sea eficiente y segura.', ''),
+  (1, 'Cine y Entretenimiento StarLight', 'Cine y Entretenimiento StarLight ofrece una experiencia cinematográfica de primer nivel con proyecciones de las últimas películas en un ambiente moderno y confortable. Además, disfruta de nuestras promociones especiales y eventos temáticos.', '');
 

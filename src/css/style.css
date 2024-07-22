@@ -202,7 +202,7 @@ body {
   font-style: oblique;
 }
 
-.entradas {
+.entries {
   float: left;
   width: 60%;
   min-height: auto;
@@ -215,21 +215,21 @@ body {
   overflow: hidden;
 }
 
-.entradas h1 {
+.entries h1 {
   margin: 0;
   padding: 0 0 20px;
   text-align: center;
   font-size: 32px;
 }
 
-.entradas label {
+.entries label {
   margin: 0;
   padding: 0;
   font-weight: bold;
   display: block;
 }
 
-.entradas input {
+.entries input {
   width: 100%;
   margin-bottom: 20px;
   border: none;
@@ -240,7 +240,7 @@ body {
   color: #fff;
   font-size: 16px;
 }
-.entradas textarea {
+.entries textarea {
   width: 1090px;
   height: 152px;
   margin-bottom: 20px;
@@ -251,7 +251,7 @@ body {
   color: #fff;
   font-size: 16px;
 }
-.entradas select {
+.entries select {
   width: 100%;
   margin-bottom: 20px;
   border: none;
@@ -261,12 +261,12 @@ body {
   color: #fff;
   font-size: 16px;
 }
-.entradas option {
+.entries option {
   background: black;
   color: #fff;
   font-size: 16px;
 }
-.entradas input[type="submit"] {
+.entries input[type="submit"] {
   border: none;
   outline: none;
   height: 40px;
@@ -276,19 +276,19 @@ body {
   border-radius: 20px;
 }
 
-.entradas input[type="submit"]:hover {
+.entries input[type="submit"]:hover {
   cursor: pointer;
   background: #ffc107b5;
   color: #000;
 }
 
-.entradas a {
+.entries a {
   text-decoration: none;
   font-size: 16px;
   line-height: 20px;
   color: darkgrey;
 }
 
-.entradas a:hover {
+.entries a:hover {
   color: #fff;
 }
