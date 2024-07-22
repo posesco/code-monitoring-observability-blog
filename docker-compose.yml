@@ -1,0 +1,131 @@
+services:
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./src:/var/www/html
+      - ./server/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: unless-stopped
+    networks:
+      - miniblog
+
+  php-fpm:
+    build:
+      context: ./server/php
+    environment:
+      SERVER_MARIA: db
+      MYSQL_USER: UserMiniBlogSql
+      MYSQL_PASSWORD: kv5OmlgW7@J4
+      MYSQL_DATABASE: MiniBlog
+      SERVER_REDIS: redis
+      REDIS_PASS: 355ef3dd
+    volumes:
+      - ./src:/var/www/html
+      - ./server/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
+      - ./server/php/php.ini:/usr/local/etc/php/conf.d/php.ini
+    restart: unless-stopped
+    networks:
+      - miniblog
+
+  db:
+    image: mariadb:11.2.4
+    environment:
+      MARIADB_ROOT_PASSWORD: toor@root
+      MARIADB_USER: UserMiniBlogSql
+      MARIADB_PASSWORD: kv5OmlgW7@J4
+      MARIADB_DATABASE: MiniBlog
+
+    volumes:
+      - db:/var/lib/mysql
+      - ./server/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+    networks:
+      - miniblog
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    environment:
+      PMA_HOST: db
+      PMA_USER: UserMiniBlogSql
+      PMA_PASSWORD: kv5OmlgW7@J4
+    networks:
+      - miniblog
+
+  redis:
+    image: redis:7.2.5
+    volumes:
+      - redis:/data
+      - ./server/redis/redis.conf:/usr/local/etc/redis/redis.conf
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf", "--appendonly", "yes"]
+    restart: unless-stopped
+    networks:
+      - miniblog
+
+
+  # cadvisor:
+  #   image: gcr.io/cadvisor/cadvisor:latest
+  #   volumes:
+  #     - /:/rootfs:ro
+  #     - /var/run:/var/run:ro
+  #     - /sys:/sys:ro
+  #     - /var/lib/docker/:/var/lib/docker:ro
+  #     - /dev/disk/:/dev/disk:ro
+  #   ports:
+  #     - 8080:8080
+  #   restart: unless-stopped
+  #   networks:
+  #     - miniblog
+
+  # prometheus:
+  #   image: prom/prometheus
+  #   volumes:
+  #     - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml    
+  #   ports:
+  #     - 9090:9090
+  #   networks:
+  #     - miniblog
+
+  # grafana:
+  #   image: grafana/grafana:latest
+  #   volumes:
+  #     - ./monitoring/datasources.yml:/etc/grafana/provisioning/datasources/datasource.yaml    
+  #   ports:
+  #     - 3000:3000
+  #   environment:
+  #     GF_AUTH_ANONYMOUS_ENABLED: true
+  #     GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+  #     GF_AUTH_DISABLE_SIGNOUT_MENU: "true"
+  #     GF_AUTH_DISABLE_LOGIN_FORM: "true"
+  #   networks:
+  #     - miniblog
+
+  # loki:
+  #   image: grafana/loki:latest
+  #   ports:
+  #     - 3100:3100
+  #   command: -config.file=/etc/loki/local-config.yaml
+  #   networks:
+  #     - miniblog
+
+  # promtail:
+  #   image: grafana/promtail:latest
+  #   volumes:
+  #     - /var/log:/var/log
+  #   command: -config.file=/etc/promtail/config.yml
+  #   networks:
+  #     - miniblog
+
+
+volumes:
+  app:
+  db:
+  redis:
+
+networks:
+  miniblog:
+    driver: bridge
