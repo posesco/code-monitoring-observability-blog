@@ -1,0 +1,265 @@
+:root {
+    --primary: #363435;
+    --text-color: white;
+    --white: white;
+    --text-gray: #FEFEFE;
+    --text-heading-gray: #D0D0F7;
+    --background: #EDF0F9;
+    --border: #aabfff;
+}
+
+
+*, *::after, *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Inter', 
+        sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: end;
+    height: 100vh;
+    min-width: 18rem;
+}
+
+
+/*? footer containers */
+footer {
+    bottom: 0;
+    background-color: var(
+        --primary);
+    width: 100%;
+    min-width: 20rem;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 80rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 4;
+    gap: 3rem 1rem;
+}
+
+ 
+.footer-columns ul {
+    display: flex;
+    gap: 0.75rem;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+.footer-columns ul a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.footer-columns ul a:hover{
+    text-decoration: underline;
+}
+
+.footer-columns h3 {
+    color: var(--text-heading-gray);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.footer-logo {
+    display: flex;
+    gap: 1rem;
+    flex-grow: 1;
+    max-width: 10rem;
+    margin-bottom: 3rem;
+}
+
+.footer-logo svg {
+    stroke: var(--text-color);
+    stroke-width: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+}
+
+.footer-bottom {
+    margin-top: 3rem;
+    display: flex;
+    align-items: end;
+    width: 100%;
+    gap: 1rem;
+    padding: 1rem 0px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: var(--text-color);
+    border-top: 1px solid var(
+        --border);
+}
+
+.footer-bottom > small {
+    margin: 0 0.25rem;
+}
+
+.footer-headline > h2 {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-primary);
+}
+
+.footer-headline > p {
+    color: var(--text-color);
+    margin: 0.25rem 0 1.25rem 0;
+}
+
+.footer-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer-description h3 {
+    margin-bottom: 0.5rem;
+}
+
+/*? socials */
+
+.social-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    justify-content: end;
+    margin-bottom: 1rem;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.social-links img {
+    width: 1.5rem;
+    height: 1.5rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+}
+
+.social-links ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    list-style-type: none;
+}
+
+/*? mobile */
+@media (min-width: 926px) {
+    .footer-logo {
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 800px) {
+    .footer-top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1rem 0.5rem 2rem 0.5rem;
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .social-wrapper {
+        justify-content: center;
+    }
+}
+
+
+
+
+
+-----
+/* 
+
+
+
+
+.grid {
+    display: grid;
+    grid-template-rows: 6rem 5rem auto 5rem;
+    grid-template-columns: 20% auto 20%;
+    font-size: 1.5rem;
+    height: 100%;
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-rows:
+            6rem 6rem 6rem auto 6rem 6rem;
+        grid-template-columns: 1fr;
+    }
+
+    aside,
+    main {
+        grid-column: 1 / 4;
+    }
+}
+
+nav,
+header,
+footer {
+    background: #F6C356;
+    grid-column: 1 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    background: #AAEC8A;
+}
+
+aside,
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside {
+    background: #99C2FE;
+}
+
+main {
+    background: #B881FF;
+} */

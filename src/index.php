@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+require 'config/mysql.php';
+require 'controllers/userController.php';
+require 'controllers/postController.php';
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog with monitoring and observability</title>
-    <link rel="icon" href="img/icon.svg" type="image/svg+xml">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
+session_start();
 
-<body>
-    <?php
-    include 'views/form.php';
-    $view = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    $viewMap = [
-        '/index.php?newPost' => 'views/newPost.php',
-        '/index.php?delPost' => 'views/delPost.php',
-        '/index.php?status' => 'views/status.php',
-    ];
-    $viewToLoad = $viewMap[$view] ?? 'views/body.php';
-    include 'views/footer.php';
-    ?>
-</body>
-
-</html>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['register'])) {
+        UserController::register($_POST['username'], $_POST['email'], $_POST['password']);
+        header('Location: login.php');
+    } elseif (isset($_POST['login'])) {
+        UserController::login($_POST['email'], $_POST['password']);
+        header('Location: home.php');
+    }
+} else {
+    if (isset($_COOKIE['auth_token'])) {
+        include 'views/home.php';
+    } else {
+        include 'views/login.php';
+    }
+}
+?>
