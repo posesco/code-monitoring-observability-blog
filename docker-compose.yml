@@ -14,13 +14,7 @@ services:
   php-fpm:
     build:
       context: ./server/php
-    environment:
-      SERVER_MARIA: db
-      MYSQL_USER: UserMiniBlogSql
-      MYSQL_PASSWORD: kv5OmlgW7@J4
-      MYSQL_DATABASE: MiniBlog
-      SERVER_REDIS: redis
-      REDIS_PASS: 355ef3dd
+    env_file: ./.env
     volumes:
       - ./src:/var/www/html
       - ./server/php/www.conf:/usr/local/etc/php-fpm.d/www.conf
@@ -31,11 +25,7 @@ services:
 
   db:
     image: mariadb:11.2.4
-    environment:
-      MARIADB_ROOT_PASSWORD: toor@root
-      MARIADB_USER: UserMiniBlogSql
-      MARIADB_PASSWORD: kv5OmlgW7@J4
-      MARIADB_DATABASE: MiniBlog
+    env_file: ./.env
 
     volumes:
       - db:/var/lib/mysql
@@ -47,12 +37,9 @@ services:
   phpmyadmin:
     image: phpmyadmin:5.2.1
     restart: unless-stopped
+    env_file: ./.env
     ports:
       - 8000:80
-    environment:
-      PMA_HOST: db
-      PMA_USER: UserMiniBlogSql
-      PMA_PASSWORD: kv5OmlgW7@J4
     networks:
       - miniblog
 
